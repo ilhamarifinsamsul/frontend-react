@@ -16,6 +16,9 @@ import Register from "../views/auth/register.jsx";
 //import view login
 import Login from "../views/auth/login.jsx";
 
+// import view dashboard
+import Dashboard from "../views/dashboard/index.jsx";
+
 export default function AppRoutes() {
   //destructure context "isAuthenticated"
   const { isAuthenticated } = useContext(AuthContext);
@@ -46,6 +49,14 @@ export default function AppRoutes() {
           ) : (
             <Login />
           )
+        }
+      />
+
+      {/* route "/dashboard" */}
+      <Route
+        path="/admin/dashboard"
+        element={
+          isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />
         }
       />
     </Routes>
