@@ -1,7 +1,25 @@
 // import Link from react router dom
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// import hook react
+import React, { useContext } from "react";
+
+import Cookies from "js-cookie";
+
+// import context
+import { AuthContext } from "../context/AuthContext";
 
 export default function SidebarMenu() {
+  const navigate = useNavigate();
+
+  // destructure context "isAuthenticated"
+  const { setIsAuthenticated } = useContext(AuthContext);
+  const logout = () => {
+    Cookies.remove("token");
+    Cookies.remove("user");
+    setIsAuthenticated(false);
+    navigate("/login", { replace: true });
+  };
+
   return (
     <div className="card border-0 rounded shadow-sm">
       <div className="card-header">MAIN MENU</div>
@@ -21,7 +39,7 @@ export default function SidebarMenu() {
             Users
           </Link>
           <a
-            href="#"
+            onClick={logout}
             className="list-group-item list-group-item-action"
             style={{ cursor: "pointer" }}
           >
