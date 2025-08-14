@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import router
+import AppRoutes from "./routes";
 
-function App() {
-  const [count, setCount] = useState(0)
+// import Link from react-router-dom
+import { Link } from "react-router-dom";
 
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      {/* Navbar (Fixed) */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
+        <div className="container">
+          {/* Brand */}
+          <Link to="/" className="navbar-brand fw-bold">
+            HOME
+          </Link>
 
-export default App
+          {/* Mobile Toggle */}
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          {/* Navbar Menu */}
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <a
+                  href="https://santrikoding.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link"
+                >
+                  SANTRIKODING.COM
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* Content Centered */}
+      <main
+        className="container d-flex align-items-center justify-content-center mt-5"
+        style={{ minHeight: "100vh", paddingTop: "80px" }} // 80px untuk menghindari navbar
+      >
+        <AppRoutes />
+      </main>
+    </div>
+  );
+}
